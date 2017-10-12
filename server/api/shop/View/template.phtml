@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Request</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <?php if(!empty($data)):?>
+          <table border="1" cellspacing="0">
+            <?php foreach($data as $key => $value): ?>
+              <tr>
+                  <td><?=$key?></td>
+                  <td>
+                      <?php if(is_array($value)):?>
+                      <ul>
+                          <?php foreach($value as $vkey => $vvalue): ?>
+                            <li>
+                                
+                                <?php if($vkey=="img"):?>
+                                <img src="<?=$vvalue?>" width="100px"/>
+                                <?php else: ?>
+                                    <?php if(is_array($vvalue)):?>
+                                    <ul>
+                                        <?php foreach($vvalue as $v):?>
+                                        <li><?=$v?></li>
+                                        <?php endforeach;?>
+                                    </ul>
+                                    <?php else:?>
+                                        <?=$vvalue?>
+                                    <?php endif;?>
+                                <?php endif; ?>
+                            </li>
+                          <?php endforeach;?>
+                      </ul>
+                      <?php else: ?>
+                            <?php if(is_array($key)):?>
+                                <ul>
+                                <?php foreach($key as $v=>$k):?>
+                                <li><?=$k?></li>
+                                <?php endforeach;?>
+                                </ul>
+                            <?php else: ?>
+                                <?php if($key=="img"):?>
+                                    <img src="<?=$value?>" width="100px"/>
+                                <?php else: ?> <?=$value?>
+                                <?php endif; ?>
+                            <?php endif;?>
+                      <?php endif; ?>
+                  </td>
+              </tr>
+            <?php endforeach;?>
+            </table>
+        <?php endif; ?>
+    </body>
+</html>
